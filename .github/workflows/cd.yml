@@ -1,0 +1,40 @@
+name: CD
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target deployment environment'
+        required: true
+        default: 'staging'
+      image-tag:
+        description: 'Docker image tag (e.g., v1.0.0)'
+        required: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate inputs
+        run: |
+          echo "Validating deployment to ${{ github.event.inputs.environment }}"
+          echo "Using image tag: ${{ github.event.inputs.image-tag }}"
+
+      - name: Simulate build (no-op)
+        run: echo "Building placeholder images..."
+
+      - name: Docker compose validation
+        run: |
+          docker compose -f docker-compose.yml config
+          if [ -f docker-compose.${{ github.event.inputs.environment }}.yml ]; then
+            docker compose -f docker-compose.yml -f docker-compose.${{ github.event.inputs.environment }}.yml config
+          fi
+
+  notify:
+    needs: validate
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Deployment notification placeholder
+        run: echo "Deployment validation complete. No actual deployment performed."

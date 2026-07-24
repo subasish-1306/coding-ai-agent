@@ -1,0 +1,12 @@
+{
+  "name": "coding-ai-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Code Intelligence Platform",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm --prefix apps/frontend run dev",
+    "build": "npm --prefix apps/frontend run build",
+    "test": "pytest tests"
+  }
+}

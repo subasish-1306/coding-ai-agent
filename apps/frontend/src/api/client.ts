@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { ScanResponse } from '../types/scanner';
 
-const API_BASE = '/api/v1';
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const baseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
+const API_BASE_URL = baseUrl.endsWith('/api/v1') ? baseUrl : `${baseUrl}/api/v1`;
 
 export const apiClient = axios.create({
-  baseURL: API_BASE,
+  baseURL: API_BASE_URL,
   headers: {
     'Accept': 'application/json',
   },

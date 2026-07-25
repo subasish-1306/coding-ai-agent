@@ -16,7 +16,7 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        target: 'https://coding-ai-agent-s67b.onrender.com',
+        target: process.env.VITE_API_BASE_URL || 'http://localhost:8000',
         changeOrigin: true,
       },
     },

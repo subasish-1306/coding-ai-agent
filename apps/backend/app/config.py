@@ -23,7 +23,11 @@ class Settings(BaseSettings):
 
     SECRET_KEY: str = "change-me"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-    CORS_ORIGINS: list[str] = ["http://localhost:5173"]
+    CORS_ORIGINS: list[str] = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://coding-ai-agent-k2vxct3k8-subasish-1306s-projects.vercel.app",
+]
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod

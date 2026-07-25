@@ -24,7 +24,7 @@ docker compose -f docker-compose.yml up --build -d
 | Service | Container Port | Host Port |
 |---|---|---|
 | Frontend Web UI | 80 | `http://localhost:5173` (or port 80 via Nginx) |
-| Backend FastAPI | 8000 | `http://localhost:8000` |
+| Backend FastAPI | 8000 | `https://coding-ai-agent-s67b.onrender.com` |
 | PostgreSQL | 5432 | `localhost:5432` |
 | Redis | 6379 | `localhost:6379` |
 
